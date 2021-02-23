@@ -65,9 +65,19 @@ Dask分布式框架提供了丰富的集群配置方法：1）\href{https://docs
 所以，尽管mpi4py在理论上可以实现分布式集群环境的搭建，但是相比于现有其他强大的python库，mpi4py需要用户自己编写更加底层的代码，再者DETRIA程序的整体已经编写完成，若要使用mpi4py搭建分布式集群计算，需要从程序开发框架上重新编写，工作量较大。综上，mpi4py不考虑作为DETRIA的集群计算环境搭建框架。
 
 \subsubsection{Ray}
-\href{https://ray.io/}{Ray}提供了用于构建分布式应用程序的简单通用API。
+\href{https://ray.io/}{Ray}提供了用于构建分布式应用程序的简单通用API。Ray的工作是确保应用程序能够以分布式方式运行，并具有分布式计算所需的所有节点内通信、数据传输和抗故障能力。Ray具有以下特征：
+\begin{enumerate}
+    \item 提供用于构建和运行分布式应用程序的简单API
+    \item 使用户能够并行化仅在单台机器编写代码，几乎不用更改代码
+    \item 在核心Ray之上包括一个大型的应用程序、库和工具生态系统，以支持复杂的应用程序
+\end{enumerate}
 
-
-
+但是，Ray当前支持MacOS和Linux。现在Windows稳定版暂时未推出，但是有Windows试验版并且正在开发中。图\ref{Ray在Ubuntu系统上搭建集群环境}为Ray在Linux系统上搭建的集群环境。
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{RayDashboard.png}
+    \caption{Ray在Ubuntu系统上搭建集群环境}
+    \label{Ray在Ubuntu系统上搭建集群环境}
+\end{figure}
 
 除了上述介绍的几种分布式框架外，Python还有非常多分布式集群库，例如\href{https://pypi.org/project/pathos/}{pathos}、\href{https://pypi.org/project/celery/}{celery}、\href{http://www.inspirel.com/yami4/}{yami4}等等。
