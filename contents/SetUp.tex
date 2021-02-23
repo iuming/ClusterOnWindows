@@ -9,6 +9,44 @@ Conda是一个开源跨平台语言无关的包管理与环境管理系统。由
     \item 使用\href{https://docs.anaconda.com/anaconda/install/hashes/}{SHA-256}验证数据完整性，防止下载到被篡改的安装包或下载过程中文件损坏
     \item 双击安装程序以启动
     \item 根据安装提示进行安装，也可查看官方\href{https://docs.anaconda.com/anaconda/install/windows/}{安装步骤}
-    \item 安装完成后，在命令提示符中输入$ conda list $查看安装是否成功
+    \item 安装完成后，在命令提示符中输入$ conda \quad list $查看安装是否成功
 \end{enumerate}
 
+\subsection{安装Visual C++}
+对于Windows，在使用Ray之前，必须安装最新的Visual C++。否则，当Ray无法找到运行时库文件（例如VCRUNTIME140\_1.dll）时，可能会收到类似于以下错误：
+\lstset{language=Bash, breaklines, columns=flexible}
+\begin{lstlisting}
+FileNotFoundError: Could not find module '_raylet.pyd' (or one of its dependencies).
+\end{lstlisting}
+
+安装Visual C++的步骤：
+\begin{enumerate}
+    \item 下载\href{https://visualstudio.microsoft.com/downloads/}{VisualStudio引导程序}安装包
+    \item 下载完成后通过命令行输入以下命令(也可以双击安装包打开图形化界面进行安装)：
+          \lstset{language=Bash, breaklines, columns=flexible, numbers=left, numbersep=5pt}
+          \begin{lstlisting}
+vs_community.exe --layout c:\vslayout --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --lang en-US
+c:\vslayout\vs_community.exe --noweb --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended
+        \end{lstlisting}
+    \item 安装最新的\href{https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads}{Visual C++}
+\end{enumerate}
+
+\subsection{安装Ray}
+安装Ray的步骤：
+\begin{enumerate}
+    \item 使用Conda创建Ray环境
+          \lstset{language=Bash, breaklines, columns=flexible}
+          \begin{lstlisting}
+            conda create -n ray python=3.8
+          \end{lstlisting}
+    \item 开启Ray环境
+          \lstset{language=Bash, breaklines, columns=flexible}
+          \begin{lstlisting}
+            conda activate ray
+          \end{lstlisting}
+    \item 通过pip安装Ray
+          \lstset{language=Bash, breaklines, columns=flexible}
+          \begin{lstlisting}
+            pip install -U ray
+          \end{lstlisting}
+\end{enumerate}
